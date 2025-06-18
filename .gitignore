@@ -1,0 +1,6 @@
+echo "__pycache__/
+*.pyc
+temp.jpg
+venv/
+.env
+" > .gitignore
