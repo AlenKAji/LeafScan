@@ -9,7 +9,12 @@ from sklearn.metrics import confusion_matrix, classification_report
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 # Paths
-model_dir = "C:/Users/Win11/Desktop/projects/Plant/model"
+model_dir = os.path.join(os.path.dirname(__file__), "..", "model")
+model_dir = os.path.abspath(model_dir)
+
+dataset_path = os.path.join(os.path.dirname(__file__), "..", "dataset", "color")
+dataset_path = os.path.abspath(dataset_path)
+
 dataset_path = "C:/Users/Win11/Desktop/projects/Plant/dataset/color/"
 
 model_path = os.path.join(model_dir, "plant_disease_model.keras")
