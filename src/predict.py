@@ -8,9 +8,9 @@ import sys
 
 # === CONFIGURATION ===
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "model", "plant_disease_model.keras")
-MODEL_PATH = os.path.abspath(MODEL_PATH)
+MODEL_PATH = "model\plant_disease_model.h5"
 CLASS_INDEX_PATH  = os.path.join(os.path.dirname(__file__), "..", "model", "class_indices.json")
-CLASS_INDEX_PATH  = os.path.abspath(CLASS_INDEX_PATH )
+CLASS_INDEX_PATH  = "model\class_indices.json"
 
 
 IMG_HEIGHT, IMG_WIDTH = 224, 224
