@@ -1,4 +1,4 @@
-# 🌿 LeafScan: Advanced Plant Disease Detection System
+# 🌿 LeafScan: Plant Disease Detection System
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://leafscan-57gequp3qt3evqnenpnytv.streamlit.app/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
@@ -288,7 +288,7 @@ We welcome contributions from the community! Here's how you can help:
 ---
 
 ## Output
-[Output_sample_image](path)
+![Output_sample_image](model/output_sample)
 ## 📄 License & Citation
 
 ### 📜 License
@@ -301,7 +301,7 @@ If you use this project in your research, please cite:
   title={LeafScan: Advanced Plant Disease Detection System},
   author={Alen K Aji},
   year={2025},
-  url={[https://github.com/your-username/leafscan](https://github.com/AlenKAji/LeafScan)}
+  url={https://github.com/AlenKAji/LeafScan}
 }
 ```
 
@@ -333,7 +333,7 @@ If you use this project in your research, please cite:
 
 ### 🌱 Empowering Agriculture Through AI
 
-**Built with ❤️ for sustainable farming and food security**
+**Built for sustainable farming and food security**
 
 [⭐ Star this repository](https://github.com/your-username/leafscan) | [🚀 Try the App](https://leafscan-57gequp3qt3evqnenpnytv.streamlit.app/)
 
