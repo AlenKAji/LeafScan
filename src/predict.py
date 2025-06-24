@@ -6,11 +6,10 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import ImageDataGenerator, img_to_array, load_img
 import sys
 
-# === CONFIGURATION ===
-#MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "model", "plant_disease_model.keras")
-MODEL_PATH = "LeafScan/model/plant_disease_model.h5"
-#CLASS_INDEX_PATH  = os.path.join(os.path.dirname(__file__), "..", "model", "class_indices.json")
-CLASS_INDEX_PATH  = "LeafScan/model/class_indices.json"
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+MODEL_PATH = os.path.join(BASE_DIR, 'model', 'plant_disease_model.h5')
+CLASS_INDEX_PATH = os.path.join(BASE_DIR, 'model', 'class_indices.json')
+
 
 
 IMG_HEIGHT, IMG_WIDTH = 224, 224
