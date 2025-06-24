@@ -1,34 +1,34 @@
 # predict.py
+import os
 import json
 import numpy as np
-import os
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.image import ImageDataGenerator, img_to_array, load_img
 import sys
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
 
+# === PATH SETUP ===
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 MODEL_PATH = os.path.join(BASE_DIR, 'model', 'plant_disease_model.h5')
 CLASS_INDEX_PATH = os.path.join(BASE_DIR, 'model', 'class_indices.json')
 
-
-
 IMG_HEIGHT, IMG_WIDTH = 224, 224
-AUGMENTATIONS = 5  # Number of augmented predictions
+AUGMENTATIONS = 5
 
-# === LOAD MODEL ===
-if not os.path.exists(MODEL_PATH):
-    raise FileNotFoundError(f"❌ Model not found at {MODEL_PATH}")
+# === MODEL LOAD ===
+if not os.path.isfile(MODEL_PATH):
+    raise FileNotFoundError(f"❌ Model not found at {MODEL_PATH}. Make sure it's uploaded in the 'model/' folder.")
+
 model = load_model(MODEL_PATH, compile=False)
 
+# === LOAD CLASS LABELS ===
+if not os.path.isfile(CLASS_INDEX_PATH):
+    raise FileNotFoundError(f"❌ Class index file not found at {CLASS_INDEX_PATH}. Make sure it's uploaded correctly.")
 
-# === LOAD CLASS INDICES AND MAP TO LABELS ===
-if not os.path.exists(CLASS_INDEX_PATH):
-    raise FileNotFoundError(f"❌ Class index file not found at {CLASS_INDEX_PATH}")
 with open(CLASS_INDEX_PATH, "r") as f:
     class_indices = json.load(f)
-labels = {v: k for k, v in class_indices.items()}  # Reversed for index-to-label
+labels = {v: k for k, v in class_indices.items()}
 
-# === IMAGE AUGMENTATION GENERATOR ===
+# === IMAGE AUGMENTATION ===
 datagen = ImageDataGenerator(
     rescale=1. / 255,
     rotation_range=20,
@@ -42,7 +42,17 @@ datagen = ImageDataGenerator(
 
 # === PREDICTION FUNCTION ===
 def predict_image(image_path, n_augmentations=AUGMENTATIONS):
-    if not os.path.exists(image_path):
+    """
+    Predict the class of a plant leaf image using multiple augmentations.
+    
+    Args:
+        image_path (str): Path to the image file.
+        n_augmentations (int): Number of augmentations to average over.
+    
+    Returns:
+        (str, float): Predicted class label and confidence percentage.
+    """
+    if not os.path.isfile(image_path):
         raise FileNotFoundError(f"❌ Image not found: {image_path}")
 
     img = load_img(image_path, target_size=(IMG_HEIGHT, IMG_WIDTH))
@@ -52,8 +62,7 @@ def predict_image(image_path, n_augmentations=AUGMENTATIONS):
     predictions = []
 
     for _ in range(n_augmentations):
-        augmented_iter = datagen.flow(x, batch_size=1)
-        augmented_img = next(augmented_iter)
+        augmented_img = next(datagen.flow(x, batch_size=1))
         pred = model.predict(augmented_img, verbose=0)
         predictions.append(pred)
 
@@ -70,14 +79,14 @@ def predict_image(image_path, n_augmentations=AUGMENTATIONS):
 
     return predicted_class, confidence
 
-# === COMMAND LINE USAGE ===
+# === CLI SUPPORT ===
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python predict.py path_to_image")
         sys.exit(1)
 
-    image_path = sys.argv[1]
+    test_image_path = sys.argv[1]
     try:
-        predict_image(image_path)
+        predict_image(test_image_path)
     except Exception as e:
         print("❌ Error:", str(e))
