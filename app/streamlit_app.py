@@ -4,7 +4,7 @@ import os
 import sys
 from io import BytesIO
 
-# ✅ Make sure the `src` folder is in the path
+# Make sure the `src` folder is in the path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from src.predict import predict_image  # or predict_image if that's the actual function name
 
