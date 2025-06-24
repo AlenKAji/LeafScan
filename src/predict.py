@@ -7,8 +7,12 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator, img_to_arra
 import sys
 
 # === CONFIGURATION ===
-MODEL_PATH = "C:/Users/Win11/Desktop/projects/Plant/model/plant_disease_model.keras"
-CLASS_INDEX_PATH = "C:/Users/Win11/Desktop/projects/Plant/model/class_indices.json"
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "model", "plant_disease_model.keras")
+MODEL_PATH = os.path.abspath(MODEL_PATH)
+CLASS_INDEX_PATH  = os.path.join(os.path.dirname(__file__), "..", "model", "class_indices.json")
+CLASS_INDEX_PATH  = os.path.abspath(CLASS_INDEX_PATH )
+
+
 IMG_HEIGHT, IMG_WIDTH = 224, 224
 AUGMENTATIONS = 5  # Number of augmented predictions
 
