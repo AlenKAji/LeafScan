@@ -23,7 +23,7 @@ Agriculture faces significant challenges with plant diseases causing:
 
 ### 💡 Our Solution
 LeafScan addresses these challenges by providing:
-- **Real-time disease detection** with 91% accuracy
+- **Disease detection** with 91% accuracy
 - **38+ disease categories** across major crops
 - **User-friendly web interface** accessible anywhere
 
@@ -287,6 +287,8 @@ We welcome contributions from the community! Here's how you can help:
 
 ---
 
+## Output
+[Output_sample_image](path)
 ## 📄 License & Citation
 
 ### 📜 License
