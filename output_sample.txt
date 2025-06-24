@@ -1,6 +1,0 @@
-
-🔍 Prediction Summary
-=========================
-🏷️  Predicted Label    : Apple___Cedar_apple_rust
-🔥 Confidence Score    : 25.01%
-=========================
